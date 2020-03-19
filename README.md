@@ -21,4 +21,4 @@ Second step is to edit ASL json files with  `edit_aslbids.py`. It require json f
 fieldmap > this is to include asl,m0 and cbf in fieldmap  if shims settings are the same 
 
 
-On the [flywheel](flywheel.io) using [fw-heudiconv](https://github.com/PennBBL/fw-heudiconv), the extra metadata and heuritic files can be combine
+On [flywheel](flywheel.io) using [fw-heudiconv](https://github.com/PennBBL/fw-heudiconv), the extra metadata and heuritic files can be combine
