@@ -104,7 +104,7 @@ for i in range(0,len(asl)):
        else:
             print (" Invalid label format for ASL")
     df=pd.DataFrame(asllist)
-    df.to_csv(os.path.splitext(asl_j[i])[0]+'_ASLContext.tsv',index=False,sep='\t',header=False)
+    df.to_csv(os.path.splitext(asl_j[i])[0]+'_aslcontext.tsv',index=False,sep='\t',header=False)
 
 
 for i in range(0,len(dm)):
@@ -117,7 +117,7 @@ for i in range(0,len(dm)):
        dmlist=['CBF']
     print(dmlist)
     df=pd.DataFrame(dmlist)
-    df.to_csv(os.path.splitext(dm_j[i])[0]+'_ASLContext.tsv',index=False,sep='\t',header=False)
+    df.to_csv(os.path.splitext(dm_j[i])[0]+'_aslcontext.tsv',index=False,sep='\t',header=False)
 
 
 #mzero edit json
@@ -143,7 +143,7 @@ for i in range(0,len(m0_j)):
     else:
        m0list=['MZeroScan']
     df=pd.DataFrame(m0list)
-    df.to_csv(os.path.splitext(m0_j[i])[0]+'_ASLContext.tsv',index=False,sep='\t',header=False)
+    df.to_csv(os.path.splitext(m0_j[i])[0]+'_aslcontext.tsv',index=False,sep='\t',header=False)
 
 
 ## fiedlmap if shimm setting match
