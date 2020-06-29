@@ -80,12 +80,12 @@ jsontemp=readjson(jsontemp)
 
 os.chdir(bids_dir+subject_id)
 # get the asl,deltam and mzeroscan 
-asl=glob.glob(session_id+'/asl/'+subject_id+'*_asl.nii.gz')
-asl_j=glob.glob(session_id+'/asl/'+subject_id+'*_asl.json')
-dm=glob.glob(session_id+'/asl/'+subject_id+'*_DELTAM.nii.gz')
-dm_j=glob.glob(session_id+'/asl/'+subject_id+'*_DELTAM.json')
-m0=glob.glob(session_id+'/asl/'+subject_id+'*_MZeroScan.nii.gz')
-m0_j=glob.glob(session_id+'/asl/'+subject_id+'*_MZeroScan.json')
+asl=glob.glob(session_id+'/perf/'+subject_id+'*_asl.nii.gz')
+asl_j=glob.glob(session_id+'/perf/'+subject_id+'*_asl.json')
+dm=glob.glob(session_id+'/perf/'+subject_id+'*_DELTAM.nii.gz')
+dm_j=glob.glob(session_id+'/perf/'+subject_id+'*_DELTAM.json')
+m0=glob.glob(session_id+'/perf/'+subject_id+'*_MoScan.nii.gz')
+m0_j=glob.glob(session_id+'/perf/'+subject_id+'*_MoScan.json')
 
 #edit json file and write tsv for asl and deltam 
 for i in range(0,len(asl)):
@@ -104,7 +104,7 @@ for i in range(0,len(asl)):
        else:
             print (" Invalid label format for ASL")
     df=pd.DataFrame(asllist)
-    df.to_csv(os.path.splitext(asl_j[i])[0]+'_ASLContext.tsv',index=False,sep='\t',header=False)
+    df.to_csv(os.path.splitext(asl_j[i])[0]+'_aslContext.tsv',index=False,sep='\t',header=False)
 
 
 for i in range(0,len(dm)):
@@ -117,7 +117,7 @@ for i in range(0,len(dm)):
        dmlist=['CBF']
     print(dmlist)
     df=pd.DataFrame(dmlist)
-    df.to_csv(os.path.splitext(dm_j[i])[0]+'_ASLContext.tsv',index=False,sep='\t',header=False)
+    df.to_csv(os.path.splitext(dm_j[i])[0]+'_aslContext.tsv',index=False,sep='\t',header=False)
 
 
 #mzero edit json
@@ -128,7 +128,7 @@ print(allasl_j)
 
 
 for i in range(0,len(m0_j)):
-    m0_nj=merge_two_dicts(readjson(m0_j[i]),jsontemp['MZeroScan'])
+    m0_nj=merge_two_dicts(readjson(m0_j[i]),jsontemp['MoScan'])
     alljson=[]
     m0_nj['IntendedFor']=[]
     for k in range(0,len(allasl_j)):
@@ -139,11 +139,11 @@ for i in range(0,len(m0_j)):
     writejson(m0_nj,m0_j[i])
     m0dim=nib.load(m0[i]).get_fdata().shape
     if len(m0dim) > 3:
-       m0list=['MZeroScan']*m0dim[3]
+       m0list=['MoScan']*m0dim[3]
     else:
-       m0list=['MZeroScan']
+       m0list=['MoScan']
     df=pd.DataFrame(m0list)
-    df.to_csv(os.path.splitext(m0_j[i])[0]+'_ASLContext.tsv',index=False,sep='\t',header=False)
+    df.to_csv(os.path.splitext(m0_j[i])[0]+'_aslContext.tsv',index=False,sep='\t',header=False)
 
 
 ## fiedlmap if shimm setting match
