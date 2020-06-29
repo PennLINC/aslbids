@@ -104,22 +104,12 @@ for i in range(0,len(asl)):
        else:
             print (" Invalid label format for ASL")
     df=pd.DataFrame(asllist)
-    df.to_csv(os.path.splitext(asl_j[i])[0]+'_aslContext.tsv',index=False,sep='\t',header=False)
+    df.to_csv(os.path.splitext(asl_j[i])[0]+'Context.tsv',index=False,sep='\t',header=False)
 
 
 for i in range(0,len(dm)):
     dm_nj=merge_two_dicts(readjson(dm_j[i]),jsontemp['asl'])
     writejson(dm_nj,dm_j[i])
-    dmdim=nib.load(dm[i]).get_fdata().shape
-    if len(dmdim) > 3:
-       dmlist=['CBF']*dmdim[3]
-    else:
-       dmlist=['CBF']
-    print(dmlist)
-    df=pd.DataFrame(dmlist)
-    df.to_csv(os.path.splitext(dm_j[i])[0]+'_aslContext.tsv',index=False,sep='\t',header=False)
-
-
 #mzero edit json
 
 allasl=asl+dm
@@ -137,14 +127,6 @@ for i in range(0,len(m0_j)):
         if alljson[j]["ShimSetting"] == m0_nj["ShimSetting"]:
             m0_nj['IntendedFor'].append(allasl[j])
     writejson(m0_nj,m0_j[i])
-    m0dim=nib.load(m0[i]).get_fdata().shape
-    if len(m0dim) > 3:
-       m0list=['MoScan']*m0dim[3]
-    else:
-       m0list=['MoScan']
-    df=pd.DataFrame(m0list)
-    df.to_csv(os.path.splitext(m0_j[i])[0]+'_aslContext.tsv',index=False,sep='\t',header=False)
-
 
 ## fiedlmap if shimm setting match
 if opts.fieldmap :
