@@ -27,7 +27,7 @@
             "BolusCutOffTimingSequence":"False",
             "BolusCutOffDelayTime":0,
             "BolusCutOffTechnique":"False"},
-  "MZeroScan": { "AcquisitionResolution":[3.75,3.75,3.75]},
+  "MoScan": { "AcquisitionResolution":[3.75,3.75,3.75]},
   "deltam": { "PulseSequenceType": "3D_SPRIAL", 
                 "PulseSequenceDetails" : "WIP" ,
                 "MagneticFieldStrength": "3T",

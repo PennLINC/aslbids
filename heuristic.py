@@ -34,11 +34,11 @@ face = create_key(
 
 # ASL scans
 asl = create_key(
-   'sub-{subject}/{session}/perf/sub-{subject}_{session}_asl')
+   'sub-{subject}/{session}/perf/sub-{subject}_{session}_task-rest_asl')
 m0 = create_key(
-   'sub-{subject}/{session}/perf/sub-{subject}_{session}_MoScan')
+   'sub-{subject}/{session}/perf/sub-{subject}_{session}_task-rest_MoScan')
 mean_perf = create_key(
-   'sub-{subject}/{session}/perf/sub-{subject}_{session}_DELTAM')
+   'sub-{subject}/{session}/perf/sub-{subject}_{session}_task-rest_DELTAM')
 
 
 def infotodict(seqinfo):
