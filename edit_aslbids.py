@@ -118,7 +118,7 @@ print(allasl_j)
 
 
 for i in range(0,len(m0_j)):
-    m0_nj=merge_two_dicts(readjson(m0_j[i]),jsontemp['MoScan'])
+    m0_nj=merge_two_dicts(readjson(m0_j[i]),jsontemp['m0scan'])
     alljson=[]
     m0_nj['IntendedFor']=[]
     for k in range(0,len(allasl_j)):

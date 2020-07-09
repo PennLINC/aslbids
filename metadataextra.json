@@ -28,7 +28,7 @@
             "BolusCutOffTimingSequence":"False",
             "BolusCutOffDelayTime":0,
             "BolusCutOffTechnique":"False"},
-  "MoScan": { },
+  "moscan": { },
   "deltam": { "PulseSequenceType": "3D_SPRIAL", 
                 "PulseSequenceDetails" : "WIP" ,
                 "MagneticFieldStrength": "3T",
