@@ -35,7 +35,7 @@ def get_parser():
              '\n json template with metadata')
     parser.add_argument(
         '-l', '--asl_label', action='store', required=False,
-        help='[required] option=[Label-Control,Control-Label], '
+        help='[required] option=[label-control,control-label], '
              '\n asl label, the label for MZeroScan and DELTAM'
              '\n are MZeroScan and CBF')
     parser.add_argument(
