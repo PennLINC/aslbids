@@ -35,7 +35,7 @@ def get_parser():
              '\n json template with metadata')
     parser.add_argument(
         '-l', '--asl_label', action='store', required=False,
-        help='[required] option=[Label-Control,Control-Label], '
+        help='[required] option=[label-control,control-label], '
              '\n asl label, the label for MZeroScan and DELTAM'
              '\n are MZeroScan and CBF')
     parser.add_argument(
@@ -82,10 +82,10 @@ os.chdir(bids_dir+subject_id)
 # get the asl,deltam and mzeroscan 
 asl=glob.glob(session_id+'/perf/'+subject_id+'*_asl.nii.gz')
 asl_j=glob.glob(session_id+'/perf/'+subject_id+'*_asl.json')
-dm=glob.glob(session_id+'/perf/'+subject_id+'*_DELTAM.nii.gz')
-dm_j=glob.glob(session_id+'/perf/'+subject_id+'*_DELTAM.json')
-m0=glob.glob(session_id+'/perf/'+subject_id+'*_MoScan.nii.gz')
-m0_j=glob.glob(session_id+'/perf/'+subject_id+'*_MoScan.json')
+dm=glob.glob(session_id+'/perf/'+subject_id+'*_deltam.nii.gz')
+dm_j=glob.glob(session_id+'/perf/'+subject_id+'*_deltam.json')
+m0=glob.glob(session_id+'/perf/'+subject_id+'*_m0scan.nii.gz')
+m0_j=glob.glob(session_id+'/perf/'+subject_id+'*_m0scan.json')
 
 #edit json file and write tsv for asl and deltam 
 for i in range(0,len(asl)):
@@ -95,16 +95,16 @@ for i in range(0,len(asl)):
     asldim=nib.load(asl[i]).get_fdata().shape
     if len(asldim) > 3:
        asllist=['asl']*asldim[3]
-       if  asllabel=='Label-Control':
-           asllist[1::2]=['Control']*len(asllist[1::2])
-           asllist[0::2]=['Label']*len(asllist[0::2])
-       elif asllabel=='Control-Label':
-            asllist[0::2]=['Control']*len(asllist[0::2])
-            asllist[1::2]=['Label']*len(asllist[1::2])
+       if  asllabel=='label-control':
+           asllist[1::2]=['control']*len(asllist[1::2])
+           asllist[0::2]=['label']*len(asllist[0::2])
+       elif asllabel=='control-label':
+            asllist[0::2]=['control']*len(asllist[0::2])
+            asllist[1::2]=['label']*len(asllist[1::2])
        else:
             print (" Invalid label format for ASL")
     df=pd.DataFrame(asllist)
-    df.to_csv(os.path.splitext(asl_j[i])[0]+'Context.tsv',index=False,sep='\t',header=False)
+    df.to_csv(os.path.splitext(asl_j[i])[0]+'context.tsv',index=False,sep='\t',header=False)
 
 
 for i in range(0,len(dm)):
@@ -118,7 +118,7 @@ print(allasl_j)
 
 
 for i in range(0,len(m0_j)):
-    m0_nj=merge_two_dicts(readjson(m0_j[i]),jsontemp['MoScan'])
+    m0_nj=merge_two_dicts(readjson(m0_j[i]),jsontemp['m0scan'])
     alljson=[]
     m0_nj['IntendedFor']=[]
     for k in range(0,len(allasl_j)):
