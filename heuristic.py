@@ -36,7 +36,7 @@ face = create_key(
 asl = create_key(
    'sub-{subject}/{session}/perf/sub-{subject}_{session}_task-rest_asl')
 m0 = create_key(
-   'sub-{subject}/{session}/perf/sub-{subject}_{session}_task-rest_moScan')
+   'sub-{subject}/{session}/perf/sub-{subject}_{session}_task-rest_m0scan')
 mean_perf = create_key(
    'sub-{subject}/{session}/perf/sub-{subject}_{session}_task-rest_deltam')
 
