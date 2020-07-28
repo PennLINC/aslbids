@@ -65,7 +65,7 @@ def readjson(jsonfile):
 
 def writejson(jdict,outfile): 
     with open(outfile, 'w+') as outfile:
-        json.dump(jdict, outfile)
+        json.dump(jdict, outfile, indent = 4, sort_keys=True)
     return outfile
 
 def merge_two_dicts(x, y):
