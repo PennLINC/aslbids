@@ -21,4 +21,9 @@ Second step is to edit ASL json files with  `edit_aslbids.py`. It require json f
 fieldmap > this is to include asl,m0 and cbf in fieldmap  if shims settings are the same 
 
 
-On [flywheel](flywheel.io) using [fw-heudiconv](https://github.com/PennBBL/fw-heudiconv), the extra metadata and heuritic files can be combine
+On [flywheel](flywheel.io) using [fw-heudiconv](https://github.com/PennBBL/fw-heudiconv), the extra metadata and ASLContext files can be specified in your heuristic during curation.
+
+1. Use the `tabulate` tool to extract your ASL parameters from DICOM headers
+2. Use the `MetadataExtras` variable to hard code these parameters (see [example](https://fw-heudiconv.readthedocs.io/en/latest/heuristic.html#fw_heudiconv.example_heuristics.demo.MetadataExtras))
+3. Dynamically create the ASLContext file in your heuristic (see [example](https://fw-heudiconv.readthedocs.io/en/latest/tips.html#arterial-spin-labelling-data))
+4. Re-curate your dataset
