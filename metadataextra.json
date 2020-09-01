@@ -1,5 +1,5 @@
 
-{   "asllabel": {"label": "LC"},
+{   "asllabel": ["m0scan","m0scan","deltam","control","label","control","label"],
     "asl" : { "PulseSequenceType": "3D_SPRIAL", 
             "PulseSequenceDetails" : "WIP" ,
             "LabelingType": "PCASL",

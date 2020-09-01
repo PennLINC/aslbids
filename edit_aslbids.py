@@ -33,15 +33,6 @@ def get_parser():
         '-j', '--jsontemplate', action='store', required=True,
         help='[required]'
              '\n json template with metadata')
-    parser.add_argument(
-        '-l', '--asl_label', action='store', required=False,
-        help='[required] option=[label-control,control-label], '
-             '\n asl label, the label for MZeroScan and DELTAM'
-             '\n are MZeroScan and CBF')
-    parser.add_argument(
-        '--fieldmap', action='store_true',required=False,
-        help='[optional]'
-             '\n "IntendedFor" for asl, dm and m0')
     return parser
 
 opts = get_parser().parse_args()
@@ -92,51 +83,20 @@ for i in range(0,len(asl)):
     print(asl[i])
     asl_nj=merge_two_dicts(readjson(asl_j[i]),jsontemp['asl'])
     writejson(asl_nj,asl_j[i])
-    asldim=nib.load(asl[i]).get_fdata().shape
-    if len(asldim) > 3:
-       asllist=['asl']*asldim[3]
-       if  asllabel=='label-control':
-           asllist[1::2]=['control']*len(asllist[1::2])
-           asllist[0::2]=['label']*len(asllist[0::2])
-       elif asllabel=='control-label':
-            asllist[0::2]=['control']*len(asllist[0::2])
-            asllist[1::2]=['label']*len(asllist[1::2])
-       else:
-            print (" Invalid label format for ASL")
+    asllist=jsontemp['asllabel']
     df=pd.DataFrame(asllist)
     df.to_csv(os.path.splitext(asl_j[i])[0]+'context.tsv',index=False,sep='\t',header=False)
 
 
 for i in range(0,len(dm)):
-    dm_nj=merge_two_dicts(readjson(dm_j[i]),jsontemp['asl'])
+    dm_nj=merge_two_dicts(readjson(dm_j[i]),jsontemp['deltam'])
     writejson(dm_nj,dm_j[i])
+
+for i in range(0,len(m0)):
+    m0_nj=merge_two_dicts(readjson(m0_j[i]),jsontemp['m0scan'])
+    writejson(m0_nj,m0_j[i])
 #mzero edit json
 
 allasl=asl+dm
 allasl_j=asl_j+dm_j
 print(allasl_j)
-
-
-for i in range(0,len(m0_j)):
-    m0_nj=merge_two_dicts(readjson(m0_j[i]),jsontemp['m0scan'])
-    alljson=[]
-    m0_nj['IntendedFor']=[]
-    for k in range(0,len(allasl_j)):
-        alljson.append(readjson(allasl_j[k]))
-    for j in range(0,len(allasl_j)):
-        if alljson[j]["ShimSetting"] == m0_nj["ShimSetting"]:
-            m0_nj['IntendedFor'].append(allasl[j])
-    writejson(m0_nj,m0_j[i])
-
-## fiedlmap if shimm setting match
-if opts.fieldmap :
-    fmap_j=glob.glob(session_id+'/fmap/'+subject_id+'*_phasediff.json')+ glob.glob(session_id+'/fmap/'+subject_id+'*_epi.json')
-    allaslj=[m0_nj,asl_nj,dm_nj]
-    allasln=m0+asl+dm
-
-    for i in range(0,len(fmap_j)):
-        fmapj=readjson(fmap_j[i])
-        for k in range(0,len(allasl_j)):
-            if allaslj[k]["ShimSetting"]==fmapj["ShimSetting"]:
-                fmapj['IntendedFor'].append(allasln[k])
-        writejson(fmapj,fmap_j[i])
