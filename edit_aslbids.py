@@ -40,7 +40,6 @@ opts = get_parser().parse_args()
 subject_id=opts.subject_id
 bids_dir=opts.bids_dir
 jsontemp=opts.jsontemplate
-asllabel=opts.asl_label
 
 if opts.session_id:
     session_id=opts.session_id
