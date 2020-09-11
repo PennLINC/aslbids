@@ -16,7 +16,7 @@ The most important paremeters required for [ASLPREP](https://aslprep.readthedocs
             "LabelingDuration": labeling duraion in seconds
             "PostLabelingDelay": post labeling delayin seconds
             "BackgroundSuppression": Yes or no
-            "M0": MO scale , defualt is 1
+            "M0Scale": MO scale , defualt is 1
             "LabelingEfficiency": default are use depending on labeling type (PCASL or ASL)
 
 `edit_aslbids.py  -s SUBJECT_ID -t SESSION_ID -b BIDS_DIR -j JSONTEMPLATE `
