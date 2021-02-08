@@ -12,7 +12,7 @@ Second step is to edit ASL json files with  `edit_aslbids.py`. It require json f
 
 The most important paremeters required for [ASLPREP](https://aslprep.readthedocs.io/en/latest/usage.html#command-line-arguments) are::  
 
-            "LabelingType": labeling type, either PCASL or ASL
+            "ArterialLabelingType": labeling type, either PCASL or ASL
             "LabelingDuration": labeling duraion in seconds
             "PostLabelingDelay": post labeling delayin seconds
             "BackgroundSuppression": Yes or no
