@@ -1,7 +1,8 @@
-import sys
-import numpy as np
-import json 
+import json
 import os
+import sys
+
+import numpy as np
 import pandas as pd
 
 if len(sys.argv) == 4:
@@ -26,8 +27,9 @@ def writejson(data,outfile):
     outfile.close()
 
 
-from glob import glob
 import shutil
+from glob import glob
+
 
 def editfiledir(bidsdir,newdir,subid,ses):
     # get directorory subjlist
